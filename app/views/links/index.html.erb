@@ -1,11 +1,5 @@
 <div class='link-form'>
-  <%= form_tag links_path do %>
-    <%= label_tag :title %>
-    <%= text_field_tag :title %>
-    <%= label_tag :url %>
-    <%= text_field_tag :url %>
-    <%= submit_tag 'Add link' %>
-  <% end %>
+  <%= render partial: 'link_form', locals: {link: @new_link} %>
 </div>
 <div class='link-list'>
     <% if @links != nil %>

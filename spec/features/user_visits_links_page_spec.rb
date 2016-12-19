@@ -13,14 +13,15 @@ RSpec.describe 'Links Page' do
 
   it 'accepts a valid link' do
     me = create :user
+    create :link
     login(me)
 
     visit links_path
 
-    fill_in 'Url', with: 'http://www.example.com'
+    fill_in 'Url', with: 'http://www.example.com/foo'
     fill_in 'Title', with: 'Example'
 
-    expect { click_button 'Add link' }.to change { Link.count }.by 1
+    expect { click_button 'Create Link' }.to change { Link.count }.by 1
   end
 
   it 'rejects invalid link' do
@@ -32,6 +33,6 @@ RSpec.describe 'Links Page' do
     fill_in 'Url', with: 'foo'
     fill_in 'Title', with: 'Example'
 
-    expect { click_button 'Add link' }.to change { Link.count }.by 0
+    expect { click_button 'Create Link' }.to change { Link.count }.by 0
   end
 end
