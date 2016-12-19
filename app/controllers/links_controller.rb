@@ -8,7 +8,7 @@ class LinksController < ApplicationController
   def show
     @link = Link.find_by(id: params[:id])
     @link.read!
-    redirect_to link.url
+    redirect_to @link.url
   end
 
   def create
