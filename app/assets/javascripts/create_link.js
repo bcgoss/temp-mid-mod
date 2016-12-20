@@ -17,6 +17,7 @@ function createLink (event){
 
   $.post("/api/v1/links", link)
    .then( renderLink )
+   .then( attachEvents )
    .fail( displayFailure )
  }
 
@@ -34,19 +35,25 @@ function renderLink(link){
 
 function linkHTML(link) {
 
-    return `<div class='link' data-id='${link.id}' id="link-${link.id}">
+    var content = `<div class='link' data-id='${link.id}' id="link-${link.id}">
               <p class='link-title' contenteditable=true>${ link.title }</p>
               <p class='link-url' contenteditable=true>${ link.url }</p>
-
               <p class="link_read">
                 ${ link.read }
               </p>
               <p class="link_buttons">
-                <button class="upgrade-quality">+</button>
-                <button class="downgrade-quality">-</button>
-                <button class='delete-link'>Delete</button>
-              </p>
-            </div>`
+              `
+    var button = ''
+    if (link.read) {
+      button = `<button class="mark-as-read">Mark As Read</button>
+                </p>
+                </div>`
+    }else {
+      button = `<button class="mark-as-read">Mark As Unead</button>
+                </p>
+                </div>`
+    }
+    return content + button
 }
 
 function clearLink() {
