@@ -11,6 +11,6 @@ class Link < ActiveRecord::Base
   end
 
   def publish
-
+    $redis.publish :read_link, self.to_json
   end
 end
