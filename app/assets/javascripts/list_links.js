@@ -8,8 +8,7 @@ $(document).ready(function(){
 // }
 
 function attachEvents(raw_link) {
-  debugger
-  attachEditEvent()
-  attachDeleteEvent()
-  attachReadToggleEvent()
+  attachEditEvent(raw_link)
+  attachDeleteEvent(raw_link)
+  attachReadToggleEvent(raw_link)
 }
