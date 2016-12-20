@@ -17,6 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'validate_url'
 
+gem 'figaro'
 # gem 'unicorn'
 
 # gem 'capistrano-rails', group: :development

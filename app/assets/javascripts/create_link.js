@@ -17,6 +17,7 @@ function createLink (event){
 
   $.post("/api/v1/links", link)
    .then( renderLink )
+   .then( attachEvents )
    .fail( displayFailure )
  }
 
@@ -29,24 +30,23 @@ function getLinkData() {
 
 function renderLink(link){
   $("#links_list").append( linkHTML(link) )
-  // clearLink();
+  clearLink();
 }
 
 function linkHTML(link) {
 
-    return `<div class='link' data-id='${link.id}' id="link-${link.id}">
+    var content = `<div class='link' data-id='${link.id}' id="link-${link.id}">
               <p class='link-title' contenteditable=true>${ link.title }</p>
               <p class='link-url' contenteditable=true>${ link.url }</p>
-
               <p class="link_read">
-                ${ link.read }
+                ${ readStatus(link.read) }
               </p>
               <p class="link_buttons">
-                <button class="upgrade-quality">+</button>
-                <button class="downgrade-quality">-</button>
-                <button class='delete-link'>Delete</button>
-              </p>
-            </div>`
+              <button class="mark-as-read">${buttonStatus(link.read)}</button>
+                </p>
+                </div>`
+
+    return content
 }
 
 function clearLink() {
@@ -56,4 +56,20 @@ function clearLink() {
 
 function displayFailure(failureData){
   console.log("FAILED attempt to create new Link: " + failureData.responseText);
+}
+
+function readStatus(read){
+  if (read) {
+    return "Read"
+  } else {
+    return "Unread"
+  }
+}
+
+function buttonStatus(read){
+  if (read) {
+    return "Mark as Unread"
+  } else {
+    return "Mark as Read"
+  }
 }

@@ -13,4 +13,14 @@ class Link < ActiveRecord::Base
   def publish
 
   end
+
+  def read_status
+    return "Read" if read
+    return "Unread"
+  end
+
+  def button_status
+    return "Mark as Unread" if read
+    return "Mark as Read"
+  end
 end
