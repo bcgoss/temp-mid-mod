@@ -14,7 +14,13 @@ RSpec.describe 'Link API' do
     expect(Link.last.title).to eq('Example')
   end
 
-  it 'returns an error' do
+  it 'returns a set of links' do
+    me = create :user_with_3_links, email: 'bcgoss@example.com'
+    other = create :user_with_3_links
 
+    get '/api/v1/links', {user_id: me.id}
+
+    expect(response).to have_http_status(:success)
+    expect(JSON.parse(response.body).count).to eq(3)
   end
 end

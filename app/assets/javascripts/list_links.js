@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $.get('/api/v1/links')
+  $.get('/api/v1/links', {user_id: session[:user_id]})
     .forEach()
     .then( renderLink )
     .then( attachEvents )
