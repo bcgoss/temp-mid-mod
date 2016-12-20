@@ -1,8 +1,8 @@
 <div class='link-form'>
   <%= render partial: 'link_form', locals: {link: @new_link} %>
 </div>
-<div class='link-list'>
-    <% if @links != nil %>
+<div id='link_list'>
+  <% if @links != nil %>
     <% @links.each do |link| %>
       <%= render partial: 'link', locals: {link: link} %>
     <% end %>
