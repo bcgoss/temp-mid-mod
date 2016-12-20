@@ -30,7 +30,7 @@ function getLinkData() {
 
 function renderLink(link){
   $("#links_list").append( linkHTML(link) )
-  // clearLink();
+  clearLink();
 }
 
 function linkHTML(link) {
@@ -39,21 +39,14 @@ function linkHTML(link) {
               <p class='link-title' contenteditable=true>${ link.title }</p>
               <p class='link-url' contenteditable=true>${ link.url }</p>
               <p class="link_read">
-                ${ link.read }
+                ${ readStatus(link.read) }
               </p>
               <p class="link_buttons">
-              `
-    var button = ''
-    if (link.read) {
-      button = `<button class="mark-as-read">Mark As Read</button>
+              <button class="mark-as-read">${buttonStatus(link.read)}</button>
                 </p>
                 </div>`
-    }else {
-      button = `<button class="mark-as-read">Mark As Unead</button>
-                </p>
-                </div>`
-    }
-    return content + button
+
+    return content
 }
 
 function clearLink() {
@@ -63,4 +56,20 @@ function clearLink() {
 
 function displayFailure(failureData){
   console.log("FAILED attempt to create new Link: " + failureData.responseText);
+}
+
+function readStatus(read){
+  if (read) {
+    return "Read"
+  } else {
+    return "Unread"
+  }
+}
+
+function buttonStatus(read){
+  if (read) {
+    return "Mark as Unread"
+  } else {
+    return "Mark as Read"
+  }
 }

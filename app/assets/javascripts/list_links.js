@@ -1,11 +1,15 @@
 $(document).ready(function(){
-  $.get('/api/v1/links', {user_id: session[:user_id]})
-    .forEach()
-    .then( renderLink )
-    .then( attachEvents )
-    .failur( displayFailure )
+  _.forEach( $.get('/api/v1/links'), setup(link) )
 })
 
+function setup(link){
+  renderLink(link.id)
+  attachEvents(link)
+}
+
 function attachEvents(raw_link) {
-  $(`#link-${raw_link.id}`).find('.link_read')
+  debugger
+  attachEditEvent()
+  attachDeleteEvent()
+  attachReadToggleEvent()
 }

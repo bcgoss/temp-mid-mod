@@ -10,7 +10,8 @@ class Api::V1::LinksController < ApplicationController
   end
 
   def index
-    @links = User.find_by(id: params['user_id']).links
+    # @links = User.find_by(id: params['user_id']).links
+    @links = Links.all
     render json: @links, status: 201
   end
 
