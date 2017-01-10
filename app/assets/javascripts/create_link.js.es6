@@ -26,7 +26,7 @@ function getLinkData() {
 
 function renderLink(link){
   $("#links-list").prepend( linkHTML(link) )
-  // clearLink();
+   clearLink();
 }
 
 function clearLink() {
